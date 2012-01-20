@@ -4,11 +4,11 @@ filetype off     " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle, required
+" let Vundle manage Vundle (required)
 Bundle 'gmarik/vundle'
 
 " ---------------
-" Plugin Bundles
+" Vundle Bundles
 " ---------------
 
 " Navigation
@@ -131,6 +131,7 @@ set directory=~/.vim/tmp
 " ---------------
 set ruler  " Ruler on
 set nu  " Line numbers on
+set relativenumber " cursor-location-relative line numbering
 set nowrap  " Line wrapping off
 set laststatus=2  " Always show the statusline
 set cmdheight=2
