@@ -25,7 +25,7 @@ Bundle 'dickeytk/status.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'mutewinter/ir_black_mod'
 Bundle 'godlygeek/csapprox'
-Bundle 'Rykka/ColorV'
+"Bundle 'Rykka/ColorV'
 " Commands
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-surround'
@@ -42,11 +42,11 @@ Bundle 'ervandew/supertab'
 Bundle 'gregsexton/MatchTag'
 Bundle 'Shougo/neocomplcache'
 " SnipMate
-Bundle "garbas/vim-snipmate"
+"Bundle 'garbas/vim-snipmate'
 " SnipMate Depedancies
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "snipmate-snippets"
+"Bundle 'MarcWeber/vim-addon-mw-utils'
+"Bundle 'tomtom/tlib_vim'
+"Bundle 'snipmate-snippets'
 " Language Additions
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-haml'
@@ -58,6 +58,7 @@ Bundle 'mutewinter/taskpaper.vim'
 Bundle 'leshill/vim-json'
 Bundle 'mutewinter/nginx.vim'
 Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-markdown'
 " Libraries
 Bundle 'L9'
 Bundle 'tpope/vim-repeat'
