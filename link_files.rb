@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-rc_files = %w{vimrc gvimrc}
+rc_files = %w{vimrc gvimrc mvimrc}
 begin
   rc_files.each do |file|
     dot_file = File.expand_path("~/.#{file}")
