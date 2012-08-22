@@ -1,4 +1,5 @@
 set nocompatible " be iMproved
+filetype on    " required!
 filetype off     " required!
 
 set rtp+=~/.vim/bundle/vundle/
@@ -14,7 +15,7 @@ Bundle 'gmarik/vundle'
 " Navigation
 Bundle 'FuzzyFinder'
 Bundle 'ZoomWin'
-Bundle 'wincent/Command-T'
+"Bundle 'wincent/Command-T'
 " This fork is required due to remapping ; to :
 Bundle 'christoomey/vim-space'
 Bundle 'Lokaltog/vim-easymotion'
@@ -40,7 +41,7 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
 Bundle 'gregsexton/MatchTag'
-Bundle 'Shougo/neocomplcache'
+"Bundle 'Shougo/neocomplcache'
 " SnipMate
 "Bundle 'garbas/vim-snipmate'
 " SnipMate Depedancies
