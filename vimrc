@@ -15,39 +15,17 @@ Bundle 'gmarik/vundle'
 " Navigation
 Bundle 'FuzzyFinder'
 Bundle 'ZoomWin'
-"Bundle 'wincent/Command-T'
-" This fork is required due to remapping ; to :
-Bundle 'christoomey/vim-space'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'mutewinter/LustyJuggler'
 " UI Additions
 Bundle 'mutewinter/vim-indent-guides'
 Bundle 'dickeytk/status.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'mutewinter/ir_black_mod'
-Bundle 'godlygeek/csapprox'
-"Bundle 'Rykka/ColorV'
 " Commands
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-fugitive'
-Bundle 'godlygeek/tabular'
-Bundle 'mileszs/ack.vim'
 " Automatic Helpers
 Bundle 'IndexedSearch'
 Bundle 'xolox/vim-session'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
-Bundle 'ervandew/supertab'
-Bundle 'gregsexton/MatchTag'
-"Bundle 'Shougo/neocomplcache'
-" SnipMate
-"Bundle 'garbas/vim-snipmate'
-" SnipMate Depedancies
-"Bundle 'MarcWeber/vim-addon-mw-utils'
-"Bundle 'tomtom/tlib_vim'
-"Bundle 'snipmate-snippets'
 " Language Additions
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-haml'
@@ -105,21 +83,22 @@ endif
 " Color
 " ---------------
 set background=dark
+colorscheme slate
 
 " Conditionally Set colorscheme
-if has('unix') && !has('gui_macvim')
-  if $TERM == 'xterm-256color'
-    " Neato, 256 color terminal. We can use ir_black_mod
-    colorscheme ir_black_mod
-  else
-    " We can't use ir_black_mod :(
-    let g:CSApprox_verbose_level=0
-    colorscheme slate
-  endif
-else
+"if has('unix') && !has('gui_macvim')
+"  if $TERM == 'xterm-256color'
+"    " Neato, 256 color terminal. We can use ir_black_mod
+"    colorscheme ir_black_mod
+"  else
+"    " We can't use ir_black_mod :(
+"    let g:CSApprox_verbose_level=0
+"    colorscheme slate
+"  endif
+"else
   " We're good if not on unix or in MacVim
-  colorscheme ir_black_mod
-endif
+"  colorscheme ir_black_mod
+"endif
 
 " ---------------
 " Backups
@@ -298,34 +277,6 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 imap <C-k>     <Plug>(neocomplcache_snippets_expand)
 smap <C-k>     <Plug>(neocomplcache_snippets_expand)
 
-" ---------------
-" Lusty Juggler
-" ---------------
-if has('unix')
-  " Allows for previous buffer on unix systems without most recent patch level
-  " that enable LustyJuggler to work
-  nnoremap <leader>, :e#<CR>
-else
-  nnoremap <leader>, :LustyJugglePrevious<CR>
-end
-let g:LustyJugglerShowKeys=1 " Show numbers for Lusty Buffers
-let g:LustyJugglerSuppressRubyWarning=1
-
-" Make Command / Alt 1-4 change to recent buffers in LustyJuggler
-
-if has('ruby')
-  if has('mac') || has('macunix') || has('gui_macvim')
-    nmap <silent><D-1> :ruby LustyJ::profile() {$lusty_juggler.send('choose',2)}<CR>
-    nmap <silent><D-2> :ruby LustyJ::profile() {$lusty_juggler.send('choose',3)}<CR>
-    nmap <silent><D-3> :ruby LustyJ::profile() {$lusty_juggler.send('choose',4)}<CR>
-    nmap <silent><D-4> :ruby LustyJ::profile() {$lusty_juggler.send('choose',5)}<CR>
-  else
-    nmap <silent><M-1> :ruby LustyJ::profile() {$lusty_juggler.send('choose',2)}<CR>
-    nmap <silent><M-2> :ruby LustyJ::profile() {$lusty_juggler.send('choose',3)}<CR>
-    nmap <silent><M-3> :ruby LustyJ::profile() {$lusty_juggler.send('choose',4)}<CR>
-    nmap <silent><M-4> :ruby LustyJ::profile() {$lusty_juggler.send('choose',5)}<CR>
-  endif
-end
 
 " ---------------
 " Syntastic
@@ -364,15 +315,6 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2 " Change the NERDTree directory to the root node
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" ---------------
-" Command T
-" ---------------
-if has("gui_macvim")
-  map <D-t> :CommandT<CR>
-else
-  nnoremap <silent><M-t> :CommandT<CR>
-endif
 
 " ---------------
 " Indent Guides
@@ -421,14 +363,6 @@ let g:statusline_order=[
       \ 'CursorColumn',
       \ 'LineAndTotal',
       \ 'FilePercent']
-
-" ---------------
-" SpeedDating
-" ---------------
-let g:speeddating_no_mappings=1 " Remove default mappings (C-a etc.)
-nmap <silent><leader>dm <Plug>SpeedDatingDown
-nmap <silent><leader>dp <Plug>SpeedDatingUp
-nmap <silent><leader>dn <Plug>SpeedDatingNowUTC
 
 " ---------------
 " Tabular
