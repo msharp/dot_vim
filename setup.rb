@@ -1,5 +1,7 @@
 #!/usr/bin/ruby
 
+%x{git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle}
+
 rc_files = %w{vimrc gvimrc mvimrc}
 begin
   rc_files.each do |file|
