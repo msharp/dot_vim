@@ -22,6 +22,7 @@ Bundle 'scrooloose/nerdtree'
 " Commands
 Bundle 'tpope/vim-fugitive'
 " Automatic Helpers
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'IndexedSearch'
 Bundle 'xolox/vim-session'
 Bundle 'Raimondi/delimitMate'
@@ -38,6 +39,7 @@ Bundle 'leshill/vim-json'
 Bundle 'mutewinter/nginx.vim'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-markdown'
+Bundle 'vim-scripts/sql.vim--Stinson'
 " Libraries
 Bundle 'L9'
 Bundle 'tpope/vim-repeat'
@@ -214,6 +216,12 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 nmap <silent> <leader>s :set spell!<CR>
 " Edit vimrc with ,v
 nmap <silent> <leader>v :e ~/.vim/vimrc<CR>
+
+" set syntax mode
+nmap <silent> <leader>sql :set syntax=sql<CR>
+
+" start substitute command with the regex search
+nmap <silent> <leader>r :%s///g<Left><Left><Left>
 
 " Window Movement
 nmap <silent> <leader>h :wincmd h<CR>
