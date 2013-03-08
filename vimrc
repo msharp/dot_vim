@@ -43,6 +43,8 @@ Bundle 'vim-scripts/sql.vim--Stinson'
 " Libraries
 Bundle 'L9'
 Bundle 'tpope/vim-repeat'
+" Shell in a buffer
+Bundle 'pthrasher/conqueterm-vim'
 
 filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
 
@@ -216,6 +218,11 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 nmap <silent> <leader>s :set spell!<CR>
 " Edit vimrc with ,v
 nmap <silent> <leader>v :e ~/.vim/vimrc<CR>
+
+" open a zsh shell in h-split 
+nmap <silent> <leader>zsh :ConqueTermSplit zsh<CR>
+" open an irb console in v-split
+nmap <silent> <leader>irb :ConqueTermVSplit irb<CR>
 
 " set syntax mode
 nmap <silent> <leader>sql :set syntax=sql<CR>
