@@ -19,6 +19,7 @@ Bundle 'ZoomWin'
 Bundle 'mutewinter/vim-indent-guides'
 Bundle 'dickeytk/status.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'myusuf3/numbers.vim'
 " Commands
 Bundle 'tpope/vim-fugitive'
 " Automatic Helpers
@@ -40,6 +41,9 @@ Bundle 'mutewinter/nginx.vim'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-markdown'
 Bundle 'vim-scripts/sql.vim--Stinson'
+Bundle 'oscarh/vimerl'
+Bundle 'elixir-lang/vim-elixir'
+Bundle 'Keithbsmiley/rspec.vim'
 " Libraries
 Bundle 'L9'
 Bundle 'tpope/vim-repeat'
@@ -120,6 +124,8 @@ set relativenumber " cursor-location-relative line numbering
 set nowrap  " Line wrapping off
 set laststatus=2  " Always show the statusline
 set cmdheight=2
+
+
 
 " ---------------
 " Behaviors
@@ -203,12 +209,15 @@ else
   nmap <M-k> <C-b>
 endif
 
-" Use ; for : in normal and visual mode, less keystrokes
+" Use ; for : in normal and visual mode, fewer keystrokes
 nnoremap ; :
 vnoremap ; :
 " double percentage sign in command mode is expanded
 " to directory of current file - http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
+
+" toggle line numbers mode within myusuf3/numbers.vim plugin
+nnoremap <F3> :NumbersToggle<CR>
 
 " ---------------
 " Leader Commands
