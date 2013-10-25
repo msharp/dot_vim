@@ -23,7 +23,7 @@ Bundle 'myusuf3/numbers.vim'
 " Commands
 Bundle 'tpope/vim-fugitive'
 " Automatic Helpers
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'IndexedSearch'
 Bundle 'xolox/vim-session'
 Bundle 'Raimondi/delimitMate'
@@ -49,6 +49,10 @@ Bundle 'L9'
 Bundle 'tpope/vim-repeat'
 " Shell in a buffer
 Bundle 'pthrasher/conqueterm-vim'
+" colourscheme
+Bundle 'altercation/vim-colors-solarized'
+" fancy status bar
+Bundle 'bling/vim-airline'
 
 filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
 
@@ -90,8 +94,19 @@ endif
 " ---------------
 " Color
 " ---------------
+" syntax enable
 set background=dark
-colorscheme slate
+colorscheme solarized " from plugin
+" colorscheme slate " built-in
+
+" hack to handle solarized in terminal, from
+" http://stackoverflow.com/questions/14093554/vim-solarized-on-os-x-terminal-app-incorrect-colors
+if !has('gui_running')
+   " Compatibility for Terminal
+   let g:solarized_termtrans=1
+   " Make Solarized use 16 colors for Terminal support
+   let g:solarized_termcolors=16
+endif
 
 " Conditionally Set colorscheme
 "if has('unix') && !has('gui_macvim')
@@ -136,7 +151,9 @@ set wildmenu           " Turn on WiLd menu
 set hidden             " Change buffer - without saving
 set history=768        " Number of things to remember in history.
 set cf                 " Enable error files & error jumping.
-set clipboard+=unnamed " Yanks go on clipboard instead.
+if $TMUX == ''         " fix for tmux yanking (http://stackoverflow.com/questions/11404800/fix-vim-tmux-yank-paste-on-unnamed-register)
+  set clipboard+=unnamed " Yanks go on clipboard instead.
+endif
 set autowrite          " Writes on make/shell commands
 set timeoutlen=350     " Time to wait for a command (after leader for example)
 set foldlevelstart=99  " Remove folds
