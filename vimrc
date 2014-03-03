@@ -23,7 +23,7 @@ Bundle 'myusuf3/numbers.vim'
 " Commands
 Bundle 'tpope/vim-fugitive'
 " Automatic Helpers
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'IndexedSearch'
 Bundle 'xolox/vim-session'
 Bundle 'Raimondi/delimitMate'
@@ -31,6 +31,7 @@ Bundle 'scrooloose/syntastic'
 " Language Additions
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-haml'
+Bundle 'othree/html5.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'itspriddle/vim-jquery'
@@ -79,7 +80,13 @@ if has('win32') || has('win64')
   cd ~
 elseif has('gui_macvim')
   " MacVim
-  set guifont=Menlo\ Regular:h12
+  " set guifont=Menlo\ Regular:h12
+  
+  set encoding=utf-8 " Necessary to show Unicode glyphs
+  let g:Powerline_symbols = 'unicode'
+  set nocompatible   " Disable vi-compatibility
+  set laststatus=2   " Always show the statusline
+  set guifont=Menlo\ Regular\ For\ Powerline:h15
 
   " Hide Toolbar in MacVim
   if has("gui_running")
@@ -98,6 +105,13 @@ endif
 set background=dark
 colorscheme solarized " from plugin
 " colorscheme slate " built-in
+
+" airline/powerline fonts 
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
 
 " hack to handle solarized in terminal, from
 " http://stackoverflow.com/questions/14093554/vim-solarized-on-os-x-terminal-app-incorrect-colors
@@ -238,7 +252,15 @@ nnoremap <F3> :NumbersToggle<CR>
 
 " ---------------
 " Leader Commands
-" ---------------
+
+" resizing horizontal splits (proportional resize)
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 4/3)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+" resizing vertical splits
+nnoremap <silent> <Leader>> :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+nnoremap <silent> <Leader>< :exe "vertical resize " . (winwidth(0) * 4/3)<CR>
+
+ ---------------
 
 " Toggle spelling mode with ,s
 nmap <silent> <leader>s :set spell!<CR>
