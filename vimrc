@@ -16,15 +16,16 @@ Bundle 'gmarik/vundle'
 Bundle 'FuzzyFinder'
 Bundle 'ZoomWin'
 " UI Additions
-Bundle 'mutewinter/vim-indent-guides'
-Bundle 'dickeytk/status.vim'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'dickeyxxx/status.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'myusuf3/numbers.vim'
 " Commands
 Bundle 'tpope/vim-fugitive'
 " Automatic Helpers
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 Bundle 'IndexedSearch'
+Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
@@ -83,10 +84,18 @@ elseif has('gui_macvim')
   " set guifont=Menlo\ Regular:h12
   
   set encoding=utf-8 " Necessary to show Unicode glyphs
-  let g:Powerline_symbols = 'unicode'
   set nocompatible   " Disable vi-compatibility
   set laststatus=2   " Always show the statusline
-  set guifont=Menlo\ Regular\ For\ Powerline:h15
+  " let g:Powerline_symbols = 'unicode'
+  " set guifont=Menlo\ Regular\ For\ Powerline:h15
+
+  " from : https://coderwall.com/p/yiot4q
+  let g:Powerline_symbols = 'fancy'
+  set guifont=Inconsolata\ for\ Powerline:h15
+  set t_Co=256
+  set fillchars+=stl:\ ,stlnc:\
+  set term=xterm-256color
+  set termencoding=utf-8
 
   " Hide Toolbar in MacVim
   if has("gui_running")
@@ -260,7 +269,7 @@ nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 nnoremap <silent> <Leader>> :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 nnoremap <silent> <Leader>< :exe "vertical resize " . (winwidth(0) * 4/3)<CR>
 
- ---------------
+" ---------------
 
 " Toggle spelling mode with ,s
 nmap <silent> <leader>s :set spell!<CR>
