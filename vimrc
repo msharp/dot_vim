@@ -29,6 +29,7 @@ Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
+Bundle "ervandew/supertab"
 " Language Additions
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-haml'
@@ -318,7 +319,10 @@ if has("autocmd")
   autocmd BufReadPost *
         \ if line("'\"") > 1 && line ("'\"") <= line("$") |
         \   exe "normal! g`\"" |
-        \ endif
+
+  "" for python, use 4-char indents
+  autocmd BufEnter *.py,*.pyw set smartindent smarttab cinwords=if,while,def,class,else,elif,except,finally,for,try,do,switch sw=4
+
 endif
 " ----------------------------------------
 " Plugin Configuration
@@ -584,3 +588,5 @@ endfunction
 
 command! QuickSpellingFix call QuickSpellingFix()
 nmap <silent> <leader>z :QuickSpellingFix<CR>set nocompatible " be iMproved
+
+
