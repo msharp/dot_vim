@@ -47,6 +47,7 @@ Bundle 'vim-scripts/sql.vim--Stinson'
 Bundle 'oscarh/vimerl'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'Keithbsmiley/rspec.vim'
+Bundle 'lambdatoast/elm.vim'
 " Libraries
 Bundle 'L9'
 Bundle 'tpope/vim-repeat'
