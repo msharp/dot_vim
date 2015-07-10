@@ -23,13 +23,13 @@ Bundle 'myusuf3/numbers.vim'
 " Commands
 Bundle 'tpope/vim-fugitive'
 " Automatic Helpers
-" Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'IndexedSearch'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
-Bundle "ervandew/supertab"
+" Bundle 'ervandew/supertab'
 " Language Additions
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-haml'
@@ -111,7 +111,6 @@ endif
 " ---------------
 " Color
 " ---------------
-" syntax enable
 set background=dark
 colorscheme solarized " from plugin
 " colorscheme slate " built-in
@@ -249,6 +248,9 @@ else
   nmap <M-j> <C-f>
   nmap <M-k> <C-b>
 endif
+
+" Don't enter 'Ex' mode
+nnoremap Q <nop>
 
 " Use ; for : in normal and visual mode, fewer keystrokes
 nnoremap ; :
@@ -589,4 +591,50 @@ endfunction
 command! QuickSpellingFix call QuickSpellingFix()
 nmap <silent> <leader>z :QuickSpellingFix<CR>set nocompatible " be iMproved
 
+" ---------------
+"  extra config to avoid annoyances 
+"  when working with ionic/angular 
+"  source code
+" ---------------
 
+"mark syntax errors with :signs
+let g:syntastic_enable_signs=1
+"automatically jump to the error when saving the file
+let g:syntastic_auto_jump=0
+"show the error list automatically
+let g:syntastic_auto_loc_list=1
+"don't care about warnings
+let g:syntastic_quiet_messages = {'level': 'warnings'}
+
+"allow for ionic html attributes
+let g:syntastic_html_tidy_blocklevel_tags = [
+  \'ion-checkbox',
+  \'ion-content',
+  \'ion-delete-button',
+  \'ion-footer-bar',
+  \'ion-header-bar',
+  \'ion-infinite-scroll',
+  \'ion-item',
+  \'ion-list',
+  \'ion-modal-view',
+  \'ion-nav-back-button',
+  \'ion-nav-bar',
+  \'ion-nav-buttons',
+  \'ion-nav-view',
+  \'ion-option-button',
+  \'ion-pane',
+  \'ion-popover-view',
+  \'ion-radio',
+  \'ion-refresher',
+  \'ion-reorder-button',
+  \'ion-scroll',
+  \'ion-side-menu',
+  \'ion-side-menus',
+  \'ion-side-menu-content',
+  \'ion-slide',
+  \'ion-slide-box',
+  \'ion-tab',
+  \'ion-tabs',
+  \'ion-toggle',
+  \'ion-view',
+  \]
