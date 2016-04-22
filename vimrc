@@ -23,7 +23,7 @@ Bundle 'myusuf3/numbers.vim'
 " Commands
 Bundle 'tpope/vim-fugitive'
 " Automatic Helpers
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 Bundle 'IndexedSearch'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
@@ -84,7 +84,7 @@ if has('win32') || has('win64')
 elseif has('gui_macvim')
   " MacVim
   " set guifont=Menlo\ Regular:h12
-  
+
   set encoding=utf-8 " Necessary to show Unicode glyphs
   set nocompatible   " Disable vi-compatibility
   set laststatus=2   " Always show the statusline
@@ -116,7 +116,7 @@ set background=dark
 colorscheme solarized " from plugin
 " colorscheme slate " built-in
 
-" airline/powerline fonts 
+" airline/powerline fonts
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -267,11 +267,11 @@ nnoremap <F3> :NumbersToggle<CR>
 " Leader Commands
 
 " resizing horizontal splits (proportional resize)
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 4/3)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 6/5)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 4/5)<CR>
 " resizing vertical splits
-nnoremap <silent> <Leader>> :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
-nnoremap <silent> <Leader>< :exe "vertical resize " . (winwidth(0) * 4/3)<CR>
+nnoremap <silent> <Leader>< :exe "vertical resize " . (winwidth(0) * 4/5)<CR>
+nnoremap <silent> <Leader>> :exe "vertical resize " . (winwidth(0) * 6/5)<CR>
 
 " ---------------
 
@@ -280,10 +280,12 @@ nmap <silent> <leader>s :set spell!<CR>
 " Edit vimrc with ,v
 nmap <silent> <leader>v :e ~/.vim/vimrc<CR>
 
-" open a zsh shell in h-split 
+" open a zsh shell in h-split
 nmap <silent> <leader>zsh :ConqueTermSplit zsh<CR>
 " open an irb console in v-split
 nmap <silent> <leader>irb :ConqueTermVSplit irb<CR>
+" open a python console in v-split
+nmap <silent> <leader>python :ConqueTermVSplit python<CR>
 
 " set syntax mode
 nmap <silent> <leader>sql :set syntax=sql<CR>
@@ -487,89 +489,6 @@ nmap <Leader>bc :BundleClean<CR>
 " ----------------------------------------
 
 " ---------------
-" OpenURL
-" ---------------
-
-if has('ruby')
-ruby << EOF
-  require 'open-uri'
-  require 'openssl'
-  
-  def extract_url(url)
-    re = %r{(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]\{\};:'".,<>?«»“”‘’]))}
-
-    url.match(re).to_s
-  end
-
-  def open_url
-    line = VIM::Buffer.current.line
-
-    if url = extract_url(line)
-      if RUBY_PLATFORM.downcase =~ /(win|mingw)(32|64)/
-        `start cmd /c chrome #{url}`
-        VIM::message("Opened #{url}")
-      else
-        `open #{url}`
-        VIM::message("Opened #{url}")
-      end
-    else
-      VIM::message("No URL found on this line.")
-    end
-
-  end
-
-  # Returns the contents of the <title> tag of a given page
-  def fetch_title(url)
-    if RUBY_VERSION < '1.9'
-      open(url).read.match(/<title>(.*?)<\/title>?/i)[1]
-    else
-      open(url, :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE).read.match(/<title>(.*?)<\/title>?/i)[1]
-    end
-  end
-
-  # Paste the title and url for the url on the clipboard in markdown format: [Title](url)
-  # Note: Clobbers p register
-  def paste_url_and_title
-    clipboard = VIM::evaluate('@+')
-    url = extract_url(clipboard)
-    if url and url.strip != ""
-      puts "Fetching title"
-      title = fetch_title(url)
-      VIM::command "let @p = '[#{title}](#{url})'"
-      VIM::command 'normal! "pp'
-    else
-      VIM::message("Clipboard does not contain URL: '#{clipboard[1..10]}'...")
-    end
-  end
-EOF
-
-" Open a URL
-if !exists("*OpenURL")
-  function! OpenURL()
-    :ruby open_url
-  endfunction
-endif
-
-command! OpenUrl call OpenURL()
-nnoremap <leader>o :call OpenURL()<CR>
-
-" ---------------
-" Paste link with Title
-" ---------------
-
-" Open a URL
-if !exists("*PasteURLTitle")
-  function! PasteURLTitle()
-    :ruby paste_url_and_title
-  endfunction
-endif
-
-command! PasteURLTitle call PasteURLTitle()
-map <leader>pt :PasteURLTitle<CR>
-
-endif " endif has('ruby')
-
-" ---------------
 " Fix Trailing White Space
 " ---------------
 map <leader>ws :%s/\s\+$//e<CR>
@@ -593,8 +512,8 @@ command! QuickSpellingFix call QuickSpellingFix()
 nmap <silent> <leader>z :QuickSpellingFix<CR>set nocompatible " be iMproved
 
 " ---------------
-"  extra config to avoid annoyances 
-"  when working with ionic/angular 
+"  extra config to avoid annoyances
+"  when working with ionic/angular
 "  source code
 " ---------------
 
