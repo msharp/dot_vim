@@ -131,6 +131,14 @@ nmap <silent> <leader>sh :split<CR>
 nmap <silent> <leader>sv :vsplit<CR>
 nmap <silent> <leader>sc :close<CR>
 
+" resizing horizontal splits (proportional resize)
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 6/5)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 4/5)<CR>
+" resizing vertical splits
+nnoremap <silent> <Leader>< :exe "vertical resize " . (winwidth(0) * 4/5)<CR>
+nnoremap <silent> <Leader>> :exe "vertical resize " . (winwidth(0) * 6/5)<CR>
+"
+"
 " ----------------------------------------
 " Auto Commands
 " ----------------------------------------
