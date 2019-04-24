@@ -1,41 +1,36 @@
-set nocompatible " be iMproved
-filetype on    " required!
-filetype off     " required!
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle (required)
-Bundle 'gmarik/vundle'
-
+call plug#begin('~/.vim/plugged')
 " ---------------
-" Vundle Bundles
+" plugins
 " ---------------
-Bundle 'scrooloose/nerdtree'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
 " UI Additions
-Bundle 'myusuf3/numbers.vim'
-Bundle 'dickeyxxx/status.vim'
+Plug 'myusuf3/numbers.vim'
 " Language Additions
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'othree/html5.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'leshill/vim-json'
-Bundle 'tpope/vim-rake'
-Bundle 'tpope/vim-markdown'
-Bundle 'vim-scripts/sql.vim--Stinson'
-Bundle 'oscarh/vimerl'
-Bundle 'elixir-lang/vim-elixir'
-Bundle 'lambdatoast/elm.vim'
+Plug 'elixir-lang/vim-elixir'
+" searching
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " colourscheme
-Bundle 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 " fancy status bar
-Bundle 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" remove bad whitespace
+Plug 'bitc/vim-bad-whitespace'
+" linter
+Plug 'w0rp/ale'
 
-filetype plugin indent on  " Automatically detect file types. (must turn on after Vundle)
+" Initialize plugin system
+call plug#end()
 
 " Set leader to ,
 " Note: This line MUST come before any <leader> mappings
 let mapleader=","
+
+" theme from airline-themes
+let g:airline_theme='atomic'
+let g:airline_powerline_fonts=1
 
 " ---------------
 " Color
@@ -117,6 +112,9 @@ vnoremap ; :
 " toggle line numbers mode within myusuf3/numbers.vim plugin
 nnoremap <F3> :NumbersToggle<CR>
 
+" toggle indentation when pasting text
+set pastetoggle=<F2>
+
 " Edit vimrc with ,v
 nmap <silent> <leader>v :e ~/.vimrc<CR>
 
@@ -130,6 +128,24 @@ nmap <silent> <leader>l :wincmd l<CR>
 nmap <silent> <leader>sh :split<CR>
 nmap <silent> <leader>sv :vsplit<CR>
 nmap <silent> <leader>sc :close<CR>
+
+" Split resizing?
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 5/4)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 4/5)<CR>
+nnoremap <silent> <Leader>< :exe "vertical resize " . (winwidth(0) * 4/5)<CR>
+nnoremap <silent> <Leader>> :exe "vertical resize " . (winwidth(0) * 5/4)<CR>
+
+" --------------
+"  fzf
+" --------------
+nmap <Leader>f :FZF<CR>
+
+" --------------
+"  vim-plug
+" --------------
+nmap <Leader>pi :PlugInstall<CR>
+nmap <Leader>pu :PlugUpdate<CR>
+
 
 " ----------------------------------------
 " Auto Commands
@@ -153,13 +169,7 @@ if has("autocmd")
 
 endif
 
-" ---------------
-" Vundle
-" ---------------
-nmap <Leader>bi :BundleInstall<CR>
-nmap <Leader>bi! :BundleInstall!<CR>
-nmap <Leader>bu :BundleInstall!<CR> " Because this also updates
-nmap <Leader>bc :BundleClean<CR>
-
-
-
+" ruby path if you are using rbenv
+" (https://stackoverflow.com/questions/3848137/do-ruby-plugins-make-starting-vim-very-slow/12141652#12141652)
+" let g:ruby_path = system('echo $HOME/.rbenv/shims')
+set re=1
