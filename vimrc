@@ -146,7 +146,6 @@ nmap <Leader>f :FZF<CR>
 nmap <Leader>pi :PlugInstall<CR>
 nmap <Leader>pu :PlugUpdate<CR>
 
-
 " ----------------------------------------
 " Auto Commands
 " ----------------------------------------
